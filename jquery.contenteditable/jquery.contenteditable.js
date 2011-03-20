@@ -1,4 +1,41 @@
-﻿(function ($) {
+﻿/* jQuery.contentEditable Plugin
+Copyright © 2011 FreshCode
+http://www.freshcode.co.za/
+
+DHTML text editor jQuery plugin that uses contentEditable attribute in modern browsers for in-place editing.
+
+Dependencies
+------------
+ - jQuery core
+ - shortcut.js for keyboard hotkeys
+ 
+Issues
+------
+ - no image support
+ - no <code> or <blockquote> buttons (use Tab key for quotes)
+ - no text alignment support
+ 
+To Do
+-----
+ - let plugin build the toolbar
+ - moves hard-coded IDs to options
+
+License
+-------
+Let's keep it simple:
+ 1. You may use this code however you wish, including for commercial projects.
+ 2. You may not sell it or charge for it without my written permission.
+ 3. You muse retain the license information in this file.
+ 4. You are encouraged to contribute to the plugin on bitbucket (https://bitbucket.org/freshcode/jquery.contenteditable)
+ 5. You are encouraged to link back to www.freshcode.co.za if you publish something about it so everyone can benefit from future updates.
+
+Best regards
+Petrus Theron
+contenteditable@freshcode.co.za
+FreshCode Software Development
+ 
+*/
+(function ($) {
 
 	var methods = {
 		edit: function (isEditing) {
@@ -149,7 +186,7 @@
 		} else if (typeof method === 'object' || !method) {
 			return methods.init.apply(this, arguments);
 		} else {
-			$.error('Method ' + method + ' does not exist on jQuery.fresheditor');
+			$.error('Method ' + method + ' does not exist on jQuery.contentEditable');
 		}
 	};
 
