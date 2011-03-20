@@ -1,0 +1,49 @@
+# Ignore file for Visual Studio 2008
+
+# use glob syntax
+syntax: glob
+
+# Ignore Visual Studio 2008 files
+obj/*
+*.obj
+*.dll
+*.exe
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+/*.bak.*
+*.bak
+*.cache
+*.ilk
+*.log
+*.lib
+*.sbr
+*.scc
+[Bb]in/*
+[Db]ebug*/
+obj/
+[Rr]elease*/
+_ReSharper*/
+[Rr]esources/*
+[Tt]est[Rr]esult*
+[Bb]uild[Ll]og.*
+*.[Pp]ublish.xml
+[Tt]est[Rr]esults*/
+Writer.Web/Scripts/MathJax/*
+
+thumbs.db
+App_Data/*
+tmp/
+/*.user
+/*.suo
+/*.pidb
+/*.userprefs
+/*.usertasks
