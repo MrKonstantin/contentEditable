@@ -37,7 +37,6 @@ _ReSharper*/
 [Bb]uild[Ll]og.*
 *.[Pp]ublish.xml
 [Tt]est[Rr]esults*/
-Writer.Web/Scripts/MathJax/*
 
 thumbs.db
 App_Data/*
