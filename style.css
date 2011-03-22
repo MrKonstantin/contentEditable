@@ -59,12 +59,13 @@ h1, h2, h3, h4, h5, h6
 	color: #000;
 	padding-bottom:0em;
 	margin:0;
+	font-weight:normal;
 }
 
 h1
 {
 	font-size: 2.3em;
-	padding-bottom: 0.67em;
+padding-bottom: 0.67em;
 	margin:0;
 }
 h2
@@ -243,10 +244,8 @@ page width. Or, you can specify an exact pixel width. */
 
 .page
 {
-	margin-top:1em;
-	max-width: 960px;
-	margin-left: auto;
-	margin-right: auto;
+	margin:1em auto;
+	max-width: 660px;
 }
 
 #header-overlay
@@ -736,6 +735,17 @@ a.block
 	margin:1em 0em;
 }
 
+.page > .content
+{
+	margin:1.62em;
+	
+}
+
+/*.content p, .content li
+{
+	max-width:34em;
+}*/
+
 .pager a
 {
 	padding:3px 10px;
@@ -884,7 +894,7 @@ a.edit
 
 /* Aristo Buttons */
 
-a.button, ul.menu li a 
+button, a.button, ul.menu li a 
 {
 	text-decoration:none!important;
 	position: relative;
@@ -949,7 +959,7 @@ a.defaultbutton {
 	border-bottom-color: #587e93;
 }
 
-a.button.default {
+button.default, a.button.default {
 	color: #1c4257;
 	background: #a3cde3;
 	background: -webkit-gradient(linear, left top, left bottom, from(#b9e0f5), to(#85b2cb));

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>jQuery ContentEditable Plugin - FreshEditor by FreshCode</title>
+	<title>jQuery ContentEditable WYSIWYG Rich Text Editor Plugin - FreshCode</title>
 	<link href="style.css" rel="stylesheet" type="text/css" />
 	<link href="jquery.contenteditable/jquery.contenteditable.css" rel="stylesheet" type="text/css" />
 	<link href="jquery.contenteditable/jquery.contenteditable.css" rel="stylesheet" type="text/css" />
@@ -11,91 +11,100 @@
 
 <div class="page">
 
-<h1 id="heading" class="fresheditable">jQuery ContentEditable Plugin</h1>
-<h2>Usage Example</h2>
-<div class="author">by <a href="http://www.freshcode.co.za/">FreshCode</a></div>
+	<div class="content">
 
-<button id="editButton" class="edit-button">Edit Content</button>
-<button id="saveButton" class="save-button hide">Save Changes</button>
-<button id="discardButton" class="hide">Discard Changes</button>
+	<h1 id="heading" class="fresheditable">jQuery ContentEditable Plugin</h1>
+	<h2>WYSIWYG Rich Text Editor Example</h2>
+	<div class="author">by <a href="http://www.freshcode.co.za/">FreshCode</a></div>
 
-<div id="editor-toolbar" class="fresheditor-toolbar hide">
-	<div id="toolbarPosition" class="clear"></div>
+	<div class="buttons" style="margin:1em 0;">
+		<button id="editButton" class="button default edit-button">Edit Content</button>
+		<button id="saveButton" class="button default save-button hide">Save Changes</button>
+		<button id="discardButton" class="hide">Discard Changes</button>
+	</div>
 
-	<div class="buttons">
+	<div id="editor-toolbar" class="fresheditor-toolbar hide">
+		<div id="toolbarPosition" class="clear"></div>
 
-		<ul class="toolbarSection">
-			<li><a href="#" class="toolbar_bold" title="Bold (Ctrl+B)">B</a></li>
-			<li><a href="#" class="toolbar_italic" title="Italicize (Ctrl+I)" >I</a></li>
-			<li><a href="#" class="toolbar_underline" title="Underline (Ctrl+U)">U</a></li>
-			<li><a href="#" title="Remove Formating (Ctrl+M)" class="toolbar_remove">&minus;</a></li>
-		</ul>
+		<div class="buttons">
 
-		<ul class="toolbarSection">
-			<li><a href="#" title="Unordered List (Ctrl+J)" class="toolbar_ul">&nbsp;</a></li>
-			<li><a href="#" title="Ordered List (Ctrl+K)" class="toolbar_ol">&nbsp;</a></li>
-			<li><a href="#" title="Superscript (Ctrl+. [period])" class="toolbar_sup">x<sup>2</sup></a></li>
-			<li><a href="#" title="Subscript (Ctrl+Shift+.)" class="toolbar_sub">x<sub>2</sub></a></li>
-			<li><a href="#" title="Link to a web page (Ctrl+L)" class="toolbar_link">@</a></li>
-		</ul>
+			<ul class="toolbarSection">
+				<li><a href="#" class="toolbar_bold" title="Bold (Ctrl+B)">B</a></li>
+				<li><a href="#" class="toolbar_italic" title="Italicize (Ctrl+I)" >I</a></li>
+				<li><a href="#" class="toolbar_underline" title="Underline (Ctrl+U)">U</a></li>
+				<li><a href="#" title="Remove Formating (Ctrl+M)" class="toolbar_remove">&minus;</a></li>
+			</ul>
 
-		<ul class="toolbarSection">
-			<li><a href="#" title="Paragraph (Ctrl+Alt+0)" class="toolbar_p">P</a></li>
-			<li><a href="#" title="Heading 1 (Ctrl+Alt+1)" class="toolbar_h1">H1</a></li>
-			<li><a href="#" title="Heading 2 (Ctrl+Alt+2)" class="toolbar_h2">H2</a></li>
-			<li><a href="#" title="Heading 3 (Ctrl+Alt+3)" class="toolbar_h3">H3</a></li>
-			<li><a href="#" title="Heading 4 (Ctrl+Alt+4)" class="toolbar_h4">H4</a></li>
-			<li><a href="#" title="Heading 5 (Ctrl+Alt+5)" class="toolbar_h5">H5</a></li>
+			<ul class="toolbarSection">
+				<li><a href="#" title="Unordered List (Ctrl+J)" class="toolbar_ul">&nbsp;</a></li>
+				<li><a href="#" title="Ordered List (Ctrl+K)" class="toolbar_ol">&nbsp;</a></li>
+				<li><a href="#" title="Superscript (Ctrl+. [period])" class="toolbar_sup">x<sup>2</sup></a></li>
+				<li><a href="#" title="Subscript (Ctrl+Shift+.)" class="toolbar_sub">x<sub>2</sub></a></li>
+				<li><a href="#" title="Link to a web page (Ctrl+L)" class="toolbar_link">@</a></li>
+			</ul>
+
+			<ul class="toolbarSection">
+				<li><a href="#" title="Paragraph (Ctrl+Alt+0)" class="toolbar_p">P</a></li>
+				<li><a href="#" title="Heading 1 (Ctrl+Alt+1)" class="toolbar_h1">H1</a></li>
+				<li><a href="#" title="Heading 2 (Ctrl+Alt+2)" class="toolbar_h2">H2</a></li>
+				<li><a href="#" title="Heading 3 (Ctrl+Alt+3)" class="toolbar_h3">H3</a></li>
+				<li><a href="#" title="Heading 4 (Ctrl+Alt+4)" class="toolbar_h4">H4</a></li>
+				<li><a href="#" title="Heading 5 (Ctrl+Alt+5)" class="toolbar_h5">H5</a></li>
+			</ul>
+
+		</div>
+	</div>
+
+	<div id="content" class="fresheditable clear">
+
+		<p><strong>jQuery.contentEditable</strong> is a light-weight WYSIWYG rich text editor plugin that uses <em>contentEditable</em> support in modern browsers for in-place HTML editing.</p>
+		<p>Initially developed for <a href="http://draftessay.com/"><em>DraftEssay.com</em></a> (which incidentally, this was written in), I have decided to open-source it to encourage development.</p>
+		<h2>Example</h2>
+		<p>Click on this text and type something. Press "Save Changes" to get the changed HTML of the editable areas.</p>
+		<h2>Dependencies</h2>
+		<p>jQuery ContentEditable depends on jQuery and <em>shortcut.js</em> for keyboard shortcuts, as given below.</p>
+		<h2>Download</h2>
+		<p>The source is hosted on <a href="https://bitbucket.org/freshcode/jquery.contenteditable">BitBucket</a>, which you can clone like so:</p>
+		<p><em>$ hg clone <a href="https://bitbucket.org/freshcode/jquery.contenteditable">https://bitbucket.org/freshcode/jquery.contenteditable</a></em></p>
+		<h3>Usage</h3>
+		<ol>
+			<li>Include jQuery 1.4 or higher.</li>
+			<li>Include <em>shortcut.js</em> (included with package).</li>
+			<li>Include <em>jquery.contenteditable.js</em></li>
+			<li>Link to <em>jquery.contenteditable.css</em> for toolbar styles</li>
+		</ol>
+		<h3>Some jQuery Calls:</h3>
+		<ol>
+			<li>To initialise the toolbar, call <em>$(".fresheditable").fresheditor();</em><br />
+			</li>
+			<li>To start/stop editing, call <em>$(".fresheditable").fresheditor("edit", true);</em> for editable elements.</li>
+			<li>To save, call <em>$(".fresheditable").fresheditor("save", function(id, content) { ... });</em> to have the callback function called for each editable element being saved.</li>
+		</ol>
+		<h2>Keyboard Shortcuts</h2>
+		<ul>
+			<li><strong>Tab</strong> indents the selected content</li>
+			<li><strong>Shift+Tab</strong> outdents selected content</li>
+			<li><strong>Ctrl+B</strong> makes text <strong>bold</strong><br />
+			</li>
+			<li><strong>Ctrl+I</strong> makes text <em>italic</em></li>
+			<li><strong>Ctrl+U</strong> <u>underlines</u> text</li>
+			<li><strong>Ctrl+L</strong> inserts a <a href="#">link</a><br />
+			</li>
+			<li><strong>Ctrl+Alt+0</strong> formats a paragraph</li>
+			<li><strong>Ctrl+Alt+1</strong> through <strong>Ctrl+Alt+5</strong> adds headings 1 through 5</li>
+			<li><strong>Ctrl+J</strong> creates an unordered list, like this one<br />
+			</li>
+			<li><strong>Ctrl+K</strong> creates an ordered list.</li>
 		</ul>
 
 	</div>
-</div>
 
-<div id="content" class="fresheditable clear">
-<p><strong>jQuery.ContentEditable</strong> is a wrapper for modern browsers' DHTML text editing capabilities using the <em>contentEditable=true</em> attribute. It was initially developed for <a href="http://draftessay.com/">Draft Essay</a>, but I decided to open-source it to further the plugin's development.</p>
-        <h2>Example</h2>
-        <p>Press the "Try it out" button for a demonstration to edit this text. All editable content will have a grey left border, defined by the CSS style <em>.fresheditable</em>.</p>
-        <h2>Usage</h2>
-        <ol>
-            <li>Include the <em>jquery.contenteditable.js</em> script.<br />
-            </li>
-            <li>Call $(".fresheditable").fresheditor(); to initialise</li>
-            <li>Use $(".fresheditable").fresheditor("edit", true); to start editing.</li>
-        </ol>
-        <blockquote>
-            <p>&lt;script type="text/javascript" src="jquery.contenteditable/jquery.contenteditable.js"&gt;&lt;/script&gt;</p>
-        </blockquote>
-        $(fsdf)
-        <p>modern browser plugin I built made fo</p>
-        <h2>Dependencies</h2>
-        <p>jQuery ContentEditable depends on shortcut.js for its keyboard shortcuts, as given below.</p>
-        <h2>Keyboard Shortcuts</h2>
-        <ul>
-            <li><strong>Tab</strong> indents the selected content</li>
-            <li><strong>Shift+Tab</strong> outdents selected content</li>
-            <li><strong>Ctrl+L</strong> inserts a link</li>
-            <li><strong>Ctrl+B</strong> makes text <strong>bold</strong></li>
-            <li><strong>Ctrl+I</strong> makes text <em>italic</em></li>
-            <li><strong>Ctrl+U</strong> <u>underlines</u> text</li>
-            <li><strong>Ctrl+Alt+0</strong> formats a paragraph</li>
-            <li><strong>Ctrl+Alt+1</strong> through <strong>Ctrl+Alt+5</strong> adds headings 1 through 5</li>
-            <li><strong>Ctrl+J</strong> creates an unordered list, like this one<br />
-            </li>
-            <li><strong>Ctrl+K</strong> creates an ordered list:</li>
-            <li style="list-style: none">
-                <ol>
-                    <li>with numbered items...<br />
-                    </li>
-                    <li>like this.</li>
-                </ol>
-            </li>
-        </ul>
-        <p><br />
-        </p>
-</div>
+	<div id="footer">
+	&copy; 2011 <a href="http://www.freshcode.co.za/">FreshCode</a>
+	</div>
+	</div>
 
-<h2>Content Source</h2>
-<code id="source"></code>
+	
 
 </div>
 
@@ -129,14 +138,26 @@
 		$("#saveButton").click(function () {
 			$(".fresheditable").fresheditor("save", function (id, parsedHtml) {
 				alert(id + ": " + parsedHtml);
-				$("#source").text($("#content").html()).show();
 			});
 			setEditMode(false);
-
 		});
 
-		$("#source").text($("#content").html()).show();
+		setEditMode(true);
 	});
+
+</script>
+
+<script type="text/javascript">
+
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-609939-5']);
+	_gaq.push(['_trackPageview']);
+
+	(function () {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
 
 </script>
 
