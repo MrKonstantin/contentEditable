@@ -137,7 +137,7 @@ FreshCode Software Development
 
 			var shortcuts = [
 				{ keys: 'Ctrl+l', method: function () { methods.createLink.apply(this); } },
-				{ keys: 'Ctrl+l', method: function () { methods.insertImage.apply(this); } },
+				{ keys: 'Ctrl+g', method: function () { methods.insertImage.apply(this); } },
 				{ keys: 'Ctrl+Alt+U', method: function () { methods.unorderedList.apply(this); } },
 				{ keys: 'Ctrl+Alt+O', method: function () { methods.orderedList.apply(this); } },
 				{ keys: 'Ctrl+q', method: function () { methods.formatBlock.apply(this, ["<BLOCKQUOTE>"]); } },
