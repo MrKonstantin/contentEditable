@@ -108,25 +108,23 @@ FreshCode Software Development
 
 			/* Bind Toolbar Clicks */
 
-			$("a.toolbar_bold", $toolbar).click(function () { methods.bold.apply(this); });
+			$("a.toolbar_bold", $toolbar).click(function () { methods.bold.apply(this); return false; });
+			$("a.toolbar_italic", $toolbar).click(function () { methods.italicize.apply(this); return false; });
+			$("a.toolbar_underline", $toolbar).click(function () { methods.underline.apply(this); return false; });
 
-			$("a.toolbar_italic", $toolbar).click(function () { methods.italicize.apply(this); });
+			$("a.toolbar_ol", $toolbar).click(function () { methods.orderedList.apply(this); return false; });
+			$("a.toolbar_ul", $toolbar).click(function () { methods.unorderedList.apply(this); return false; });
+			$("a.toolbar_sup", $toolbar).click(function () { methods.superscript.apply(this); return false; });
+			$("a.toolbar_sub", $toolbar).click(function () { methods.subscript.apply(this); return false; });
+			$("a.toolbar_link", $toolbar).click(function () { methods.createLink.apply(this); return false; });
 
-			$("a.toolbar_underline", $toolbar).click(function () { methods.underline.apply(this); });
-
-			$("a.toolbar_ol", $toolbar).click(function () { methods.orderedList.apply(this); });
-			$("a.toolbar_ul", $toolbar).click(function () { methods.unorderedList.apply(this); });
-			$("a.toolbar_sup", $toolbar).click(function () { methods.superscript.apply(this); });
-			$("a.toolbar_sub", $toolbar).click(function () { methods.subscript.apply(this); });
-			$("a.toolbar_link", $toolbar).click(function () { methods.createLink.apply(this); });
-
-			$("a.toolbar_p", $toolbar).click(function () { methods.formatBlock.apply(this, ["<P>"]); });
-			$("a.toolbar_h1", $toolbar).click(function () { methods.formatBlock.apply(this, ["<H1>"]); });
-			$("a.toolbar_h2", $toolbar).click(function () { methods.formatBlock.apply(this, ["<H2>"]); });
-			$("a.toolbar_h3", $toolbar).click(function () { methods.formatBlock.apply(this, ["<H3>"]); });
-			$("a.toolbar_h4", $toolbar).click(function () { methods.formatBlock.apply(this, ["<H4>"]); });
-			$("a.toolbar_h5", $toolbar).click(function () { methods.formatBlock.apply(this, ["<H5>"]); });
-			$("a.toolbar_remove", $toolbar).click(function () { methods.removeFormat.apply(this); });
+			$("a.toolbar_p", $toolbar).click(function () { methods.formatBlock.apply(this, ["<P>"]); return false; });
+			$("a.toolbar_h1", $toolbar).click(function () { methods.formatBlock.apply(this, ["<H1>"]); return false; });
+			$("a.toolbar_h2", $toolbar).click(function () { methods.formatBlock.apply(this, ["<H2>"]); return false; });
+			$("a.toolbar_h3", $toolbar).click(function () { methods.formatBlock.apply(this, ["<H3>"]); return false; });
+			$("a.toolbar_h4", $toolbar).click(function () { methods.formatBlock.apply(this, ["<H4>"]); return false; });
+			$("a.toolbar_h5", $toolbar).click(function () { methods.formatBlock.apply(this, ["<H5>"]); return false; });
+			$("a.toolbar_remove", $toolbar).click(function () { methods.removeFormat.apply(this); return false; });
 
 			var shortcuts = [
 				{ keys: 'Ctrl+l', method: function () { methods.createLink.apply(this); } },
@@ -186,7 +184,7 @@ FreshCode Software Development
 		} else {
 			$.error('Method ' + method + ' does not exist on jQuery.contentEditable');
 		}
-		
+
 		return;
 	};
 
