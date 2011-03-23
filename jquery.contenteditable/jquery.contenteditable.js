@@ -86,7 +86,7 @@ FreshCode Software Development
 		paste: function () {
 			document.execCommand("Paste", false, null);
 		},
-		save: function(callback) {
+		save: function (callback) {
 			return this.each(function () {
 				(callback)($(this).attr("id"), $(this).html());
 			});
@@ -129,27 +129,27 @@ FreshCode Software Development
 			$("a.toolbar_remove", $toolbar).click(function () { methods.removeFormat.apply(this); });
 
 			var shortcuts = [
-				{ keys: 'Ctrl+l', method: function() { methods.createLink.apply(this); } },
-				{ keys: 'Ctrl+j', method: function() { methods.unorderedList.apply(this); } },
-				{ keys: 'Ctrl+k', method: function() { methods.orderedList.apply(this); } },
-				{ keys: 'Ctrl+.', method: function() { methods.superscript.apply(this); } },
-				{ keys: 'Ctrl+Shift+.', method: function() { methods.subscript.apply(this); } },
-				{ keys: 'Ctrl+Alt+0', method: function() { methods.formatBlock.apply(this, ["p"]); } },
-				{ keys: 'Ctrl+b', method: function() { methods.bold.apply(this); } },
-				{ keys: 'Ctrl+i', method: function() { methods.italicize.apply(this); } },
-				{ keys: 'Ctrl+Alt+1', method: function() { methods.formatBlock.apply(this, ["h1"]); } },
-				{ keys: 'Ctrl+Alt+2', method: function() { methods.formatBlock.apply(this, ["h2"]); } },
-				{ keys: 'Ctrl+Alt+3', method: function() { methods.formatBlock.apply(this, ["h3"]); } },
-				{ keys: 'Ctrl+Alt+4', method: function() { methods.formatBlock.apply(this, ["h4"]); } },
-				{ keys: 'Ctrl+Alt+4', method: function() { methods.formatBlock.apply(this, ["h4"]); } },
-				{ keys: 'Ctrl+m', method: function() { methods.removeFormat.apply(this); } },
-				{ keys: 'Ctrl+u', method: function() { methods.underline.apply(this); } },
-				{ keys: 'tab', method: function() { methods.indent.apply(this); } },
-				{ keys: 'Ctrl+tab', method: function() { methods.indent.apply(this); } },
-				{ keys: 'Shift+tab', method: function() { methods.outdent.apply(this); } }
+				{ keys: 'Ctrl+l', method: function () { methods.createLink.apply(this); } },
+				{ keys: 'Ctrl+j', method: function () { methods.unorderedList.apply(this); } },
+				{ keys: 'Ctrl+k', method: function () { methods.orderedList.apply(this); } },
+				{ keys: 'Ctrl+.', method: function () { methods.superscript.apply(this); } },
+				{ keys: 'Ctrl+Shift+.', method: function () { methods.subscript.apply(this); } },
+				{ keys: 'Ctrl+Alt+0', method: function () { methods.formatBlock.apply(this, ["p"]); } },
+				{ keys: 'Ctrl+b', method: function () { methods.bold.apply(this); } },
+				{ keys: 'Ctrl+i', method: function () { methods.italicize.apply(this); } },
+				{ keys: 'Ctrl+Alt+1', method: function () { methods.formatBlock.apply(this, ["h1"]); } },
+				{ keys: 'Ctrl+Alt+2', method: function () { methods.formatBlock.apply(this, ["h2"]); } },
+				{ keys: 'Ctrl+Alt+3', method: function () { methods.formatBlock.apply(this, ["h3"]); } },
+				{ keys: 'Ctrl+Alt+4', method: function () { methods.formatBlock.apply(this, ["h4"]); } },
+				{ keys: 'Ctrl+Alt+4', method: function () { methods.formatBlock.apply(this, ["h4"]); } },
+				{ keys: 'Ctrl+m', method: function () { methods.removeFormat.apply(this); } },
+				{ keys: 'Ctrl+u', method: function () { methods.underline.apply(this); } },
+				{ keys: 'tab', method: function () { methods.indent.apply(this); } },
+				{ keys: 'Ctrl+tab', method: function () { methods.indent.apply(this); } },
+				{ keys: 'Shift+tab', method: function () { methods.outdent.apply(this); } }
 			];
 
-			$.each(shortcuts, function(index, elem) {
+			$.each(shortcuts, function (index, elem) {
 				shortcut.add(elem.keys, function () {
 					elem.method();
 					return false;
@@ -173,9 +173,7 @@ FreshCode Software Development
 					});
 				}
 			});
-		},
-
-
+		}
 	};
 
 	$.fn.fresheditor = function (method) {
@@ -188,6 +186,8 @@ FreshCode Software Development
 		} else {
 			$.error('Method ' + method + ' does not exist on jQuery.contentEditable');
 		}
+		
+		return;
 	};
 
 })(jQuery);
