@@ -74,6 +74,10 @@ FreshCode Software Development
 			var urlPrompt = prompt("Enter URL:", "http://");
 			document.execCommand("createLink", false, urlPrompt);
 		},
+		insertImage: function () { /* This can be improved */
+			var urlPrompt = prompt("Enter Image URL:", "http://");
+			document.execCommand("InsertImage", false, urlPrompt);
+		},
 		formatBlock: function (block) {
 			document.execCommand("FormatBlock", null, block);
 		},
@@ -111,12 +115,17 @@ FreshCode Software Development
 			$("a.toolbar_bold", $toolbar).click(function () { methods.bold.apply(this); return false; });
 			$("a.toolbar_italic", $toolbar).click(function () { methods.italicize.apply(this); return false; });
 			$("a.toolbar_underline", $toolbar).click(function () { methods.underline.apply(this); return false; });
+			$("a.toolbar_remove", $toolbar).click(function () { methods.removeFormat.apply(this); return false; });
+
+			$("a.toolbar_link", $toolbar).click(function () { methods.createLink.apply(this); return false; });
+			$("a.toolbar_image", $toolbar).click(function () { methods.insertImage.apply(this); return false; });
+			$("a.toolbar_blockquote", $toolbar).click(function () { methods.formatBlock.apply(this, ["<BLOCKQUOTE>"]); return false; });
+			$("a.toolbar_code", $toolbar).click(function () { methods.formatBlock.apply(this, ["<PRE>"]); return false; });
 
 			$("a.toolbar_ol", $toolbar).click(function () { methods.orderedList.apply(this); return false; });
 			$("a.toolbar_ul", $toolbar).click(function () { methods.unorderedList.apply(this); return false; });
 			$("a.toolbar_sup", $toolbar).click(function () { methods.superscript.apply(this); return false; });
 			$("a.toolbar_sub", $toolbar).click(function () { methods.subscript.apply(this); return false; });
-			$("a.toolbar_link", $toolbar).click(function () { methods.createLink.apply(this); return false; });
 
 			$("a.toolbar_p", $toolbar).click(function () { methods.formatBlock.apply(this, ["<P>"]); return false; });
 			$("a.toolbar_h1", $toolbar).click(function () { methods.formatBlock.apply(this, ["<H1>"]); return false; });
@@ -124,12 +133,15 @@ FreshCode Software Development
 			$("a.toolbar_h3", $toolbar).click(function () { methods.formatBlock.apply(this, ["<H3>"]); return false; });
 			$("a.toolbar_h4", $toolbar).click(function () { methods.formatBlock.apply(this, ["<H4>"]); return false; });
 			$("a.toolbar_h5", $toolbar).click(function () { methods.formatBlock.apply(this, ["<H5>"]); return false; });
-			$("a.toolbar_remove", $toolbar).click(function () { methods.removeFormat.apply(this); return false; });
+			
 
 			var shortcuts = [
 				{ keys: 'Ctrl+l', method: function () { methods.createLink.apply(this); } },
-				{ keys: 'Ctrl+j', method: function () { methods.unorderedList.apply(this); } },
-				{ keys: 'Ctrl+k', method: function () { methods.orderedList.apply(this); } },
+				{ keys: 'Ctrl+l', method: function () { methods.insertImage.apply(this); } },
+				{ keys: 'Ctrl+Alt+U', method: function () { methods.unorderedList.apply(this); } },
+				{ keys: 'Ctrl+Alt+O', method: function () { methods.orderedList.apply(this); } },
+				{ keys: 'Ctrl+q', method: function () { methods.formatBlock.apply(this, ["<BLOCKQUOTE>"]); } },
+				{ keys: 'Ctrl+Alt+k', method: function () { methods.formatBlock.apply(this, ["<PRE>"]); } },
 				{ keys: 'Ctrl+.', method: function () { methods.superscript.apply(this); } },
 				{ keys: 'Ctrl+Shift+.', method: function () { methods.subscript.apply(this); } },
 				{ keys: 'Ctrl+Alt+0', method: function () { methods.formatBlock.apply(this, ["p"]); } },

@@ -33,6 +33,14 @@ em
 	padding-left:10px;
 }
 
+.fresheditable[contentEditable=true] img
+{
+	border:2px dashed #ccc;
+	min-width:32px;
+	min-height:32px;
+	padding:1em;
+}
+
 .fresheditable .edit-button > span
 {
 	background-image:url("images/edit_icon.png");
@@ -148,6 +156,39 @@ em
 	background-image:url("images/ul.gif");
 	background-repeat:no-repeat;
 	background-position:center center;
+}
+
+.fresheditor-toolbar .buttons ul.toolbarSection li a.toolbar_image
+{
+	background-image:url("images/icon_image.gif");
+	background-repeat:no-repeat;
+	background-position:center center;
+}
+
+.fresheditor-toolbar .buttons ul.toolbarSection li a.toolbar_blockquote
+{
+	background-image:url("images/blockquote.gif");
+	background-repeat:no-repeat;
+	background-position:center center;
+}
+
+.fresheditor-toolbar .buttons ul.toolbarSection li a.toolbar_code
+{
+	font-weight:bold;
+}
+
+a.contenteditable-icon
+{
+	text-decoration:none!important;
+	background-image:url("images/edit_icon.png");
+	background-repeat:no-repeat;
+	background-position:center center;
+	
+	width:16px;
+	height:24px;
+	display:block;
+	margin-right:5px;
+	
 }
 
 .hide
