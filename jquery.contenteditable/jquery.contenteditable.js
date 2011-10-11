@@ -36,7 +36,7 @@ FreshCode Software Development
  
 */
 (function ($) {
-
+	var inited = false;
 	var methods = {
 		edit: function (isEditing) {
 			return this.each(function () {
@@ -97,9 +97,8 @@ FreshCode Software Development
 		},
 		init: function (options) {
 
-			var $toolbar = $("#editor-toolbar"); // put in options
-
-			$(window).scroll(function () {
+			var $toolbar = $(this).prev(".fresheditor-toolbar"),
+			on_scroll = function () {
 				var docTop = $(window).scrollTop();
 
 				var toolbarTop = $toolbar.offset().top;
@@ -108,7 +107,14 @@ FreshCode Software Development
 				} else {
 					$("div.buttons", $toolbar).css("position", "relative");
 				}
-			});
+			}, toolbar_reset = function() {
+				$(window).unbind('scroll', on_scroll);
+				$("div.buttons", $toolbar).css("position", "relative");
+			}, toolbar_scroll = function() {
+				$(window).bind('scroll', on_scroll);
+				on_scroll();
+				activeDocument = this;
+			};
 
 			/* Bind Toolbar Clicks */
 
@@ -134,37 +140,42 @@ FreshCode Software Development
 			$("a.toolbar_h4", $toolbar).click(function () { methods.formatBlock.apply(this, ["<H4>"]); return false; });
 			$("a.toolbar_h5", $toolbar).click(function () { methods.formatBlock.apply(this, ["<H5>"]); return false; });
 			
+			if (!inited)
+			{
+				var shortcuts = [
+					{ keys: 'Ctrl+l', method: function () { methods.createLink.apply(this); } },
+					{ keys: 'Ctrl+g', method: function () { methods.insertImage.apply(this); } },
+					{ keys: 'Ctrl+Alt+U', method: function () { methods.unorderedList.apply(this); } },
+					{ keys: 'Ctrl+Alt+O', method: function () { methods.orderedList.apply(this); } },
+					{ keys: 'Ctrl+q', method: function () { methods.formatBlock.apply(this, ["<BLOCKQUOTE>"]); } },
+					{ keys: 'Ctrl+Alt+k', method: function () { methods.formatBlock.apply(this, ["<PRE>"]); } },
+					{ keys: 'Ctrl+.', method: function () { methods.superscript.apply(this); } },
+					{ keys: 'Ctrl+Shift+.', method: function () { methods.subscript.apply(this); } },
+					{ keys: 'Ctrl+Alt+0', method: function () { methods.formatBlock.apply(this, ["p"]); } },
+					{ keys: 'Ctrl+b', method: function () { 
+						methods.bold.apply(this); 
+					} },
+					{ keys: 'Ctrl+i', method: function () { methods.italicize.apply(this); } },
+					{ keys: 'Ctrl+Alt+1', method: function () { methods.formatBlock.apply(this, ["h1"]); } },
+					{ keys: 'Ctrl+Alt+2', method: function () { methods.formatBlock.apply(this, ["h2"]); } },
+					{ keys: 'Ctrl+Alt+3', method: function () { methods.formatBlock.apply(this, ["h3"]); } },
+					{ keys: 'Ctrl+Alt+4', method: function () { methods.formatBlock.apply(this, ["h4"]); } },
+					{ keys: 'Ctrl+Alt+4', method: function () { methods.formatBlock.apply(this, ["h4"]); } },
+					{ keys: 'Ctrl+m', method: function () { methods.removeFormat.apply(this); } },
+					{ keys: 'Ctrl+u', method: function () { methods.underline.apply(this); } },
+					{ keys: 'tab', method: function () { methods.indent.apply(this); } },
+					{ keys: 'Ctrl+tab', method: function () { methods.indent.apply(this); } },
+					{ keys: 'Shift+tab', method: function () { methods.outdent.apply(this); } }
+				];
 
-			var shortcuts = [
-				{ keys: 'Ctrl+l', method: function () { methods.createLink.apply(this); } },
-				{ keys: 'Ctrl+g', method: function () { methods.insertImage.apply(this); } },
-				{ keys: 'Ctrl+Alt+U', method: function () { methods.unorderedList.apply(this); } },
-				{ keys: 'Ctrl+Alt+O', method: function () { methods.orderedList.apply(this); } },
-				{ keys: 'Ctrl+q', method: function () { methods.formatBlock.apply(this, ["<BLOCKQUOTE>"]); } },
-				{ keys: 'Ctrl+Alt+k', method: function () { methods.formatBlock.apply(this, ["<PRE>"]); } },
-				{ keys: 'Ctrl+.', method: function () { methods.superscript.apply(this); } },
-				{ keys: 'Ctrl+Shift+.', method: function () { methods.subscript.apply(this); } },
-				{ keys: 'Ctrl+Alt+0', method: function () { methods.formatBlock.apply(this, ["p"]); } },
-				{ keys: 'Ctrl+b', method: function () { methods.bold.apply(this); } },
-				{ keys: 'Ctrl+i', method: function () { methods.italicize.apply(this); } },
-				{ keys: 'Ctrl+Alt+1', method: function () { methods.formatBlock.apply(this, ["h1"]); } },
-				{ keys: 'Ctrl+Alt+2', method: function () { methods.formatBlock.apply(this, ["h2"]); } },
-				{ keys: 'Ctrl+Alt+3', method: function () { methods.formatBlock.apply(this, ["h3"]); } },
-				{ keys: 'Ctrl+Alt+4', method: function () { methods.formatBlock.apply(this, ["h4"]); } },
-				{ keys: 'Ctrl+Alt+4', method: function () { methods.formatBlock.apply(this, ["h4"]); } },
-				{ keys: 'Ctrl+m', method: function () { methods.removeFormat.apply(this); } },
-				{ keys: 'Ctrl+u', method: function () { methods.underline.apply(this); } },
-				{ keys: 'tab', method: function () { methods.indent.apply(this); } },
-				{ keys: 'Ctrl+tab', method: function () { methods.indent.apply(this); } },
-				{ keys: 'Shift+tab', method: function () { methods.outdent.apply(this); } }
-			];
-
-			$.each(shortcuts, function (index, elem) {
-				shortcut.add(elem.keys, function () {
-					elem.method();
-					return false;
-				}, { 'type': 'keydown', 'propagate': false });
-			});
+				$.each(shortcuts, function (index, elem) {
+					shortcut.add(elem.keys, function () {
+						elem.method();
+						return false;
+					}, { 'type': 'keydown', 'propagate': false });
+				});
+				inited = true;
+			}
 
 			return this.each(function () {
 
@@ -172,6 +183,8 @@ FreshCode Software Development
 					tooltip = $('<div />', {
 						text: $this.attr('title')
 					});
+				$this.blur(toolbar_reset);
+				$this.focus(toolbar_scroll);
 
 				// If the plugin hasn't been initialized yet
 				if (!data) {
@@ -187,12 +200,11 @@ FreshCode Software Development
 	};
 
 	$.fn.fresheditor = function (method) {
-
 		// Method calling logic
 		if (methods[method]) {
 			return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
 		} else if (typeof method === 'object' || !method) {
-			return methods.init.apply(this, arguments);
+			methods.init.apply(this, arguments);
 		} else {
 			$.error('Method ' + method + ' does not exist on jQuery.contentEditable');
 		}
