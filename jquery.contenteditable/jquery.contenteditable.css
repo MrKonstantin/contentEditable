@@ -139,7 +139,7 @@ em
 	text-decoration:underline!important;
 }
 
-.fresheditor-toolbar .buttons ul.toolbarSection li a.toolbar_link
+.fresheditor-toolbar .buttons ul.toolbarSection li a.toolbar_createLink
 {
 	font-weight:bold;
 }
@@ -158,7 +158,7 @@ em
 	background-position:center center;
 }
 
-.fresheditor-toolbar .buttons ul.toolbarSection li a.toolbar_image
+.fresheditor-toolbar .buttons ul.toolbarSection li a.toolbar_insertImage
 {
 	background-image:url("images/icon_image.gif");
 	background-repeat:no-repeat;
