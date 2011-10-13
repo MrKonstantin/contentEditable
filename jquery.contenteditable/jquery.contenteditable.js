@@ -131,17 +131,20 @@ FreshCode Software Development
 							return false; 
 						}
 
+						// we allow multiple commands to be executed as one action
+						// typically, this only happens with removeFormat + unlink
 						if (typeof opts.execCommand == 'string') {
 							opts.execCommand = [opts.execCommand];
 							opts.execCommandValue = [opts.execCommandValue]
 						}
 
+						// since execCommand is now an array, loop
 						$.each(opts.execCommand, function(i, execCommand) {
 							var execCommandValue = typeof opts.execCommandValue == 'object' ? opts.execCommandValue[i] : undefined;
 							// if the command wants to provide a value to the execCommand, allow
 							// it to using a callback
 							if (typeof execCommandValue === "function") {
-								opts.execCommandValue(function(value) {
+								execCommandValue(function(value) {
 									// allow command to be aborted by returning false
 									if (value === false) {
 										return false; 
