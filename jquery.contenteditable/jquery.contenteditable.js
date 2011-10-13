@@ -131,21 +131,30 @@ FreshCode Software Development
 							return false; 
 						}
 
-						// if the command wants to provide a value to the execCommand, allow
-						// it to using a callback
-						if (typeof opts.execCommandValue === "function") {
-							opts.execCommandValue(function(value) {
-								// allow command to be aborted by returning false
-								if (value === false) {
-									return false; 
-								}
-								document.execCommand(opts.execCommand, false, value);
-							});
+						if (typeof opts.execCommand == 'string') {
+							opts.execCommand = [opts.execCommand];
+							opts.execCommandValue = [opts.execCommandValue]
 						}
-						else
-						{
-							document.execCommand(opts.execCommand, false, opts.execCommandValue);
-						}
+
+						$.each(opts.execCommand, function(i, execCommand) {
+							var execCommandValue = typeof opts.execCommandValue == 'object' ? opts.execCommandValue[i] : undefined;
+							// if the command wants to provide a value to the execCommand, allow
+							// it to using a callback
+							if (typeof execCommandValue === "function") {
+								opts.execCommandValue(function(value) {
+									// allow command to be aborted by returning false
+									if (value === false) {
+										return false; 
+									}
+								
+									document.execCommand(execCommand, false, value);
+								});
+							}
+							else
+							{
+								document.execCommand(execCommand, false, execCommandValue);
+							}
+						});
 						return false;
 					}
 				})(command, opts);
@@ -203,7 +212,7 @@ FreshCode Software Development
 			$.error('Method ' + method + ' does not exist on jQuery.contentEditable');
 		}
 
-		return;
+		return this;
 	};
 
 	$.fn.fresheditor.defaults = {
@@ -263,7 +272,7 @@ FreshCode Software Development
 			bold: { shortcut: "Ctrl+b", execCommand: "bold", toolbarHtml: "B" },
 			italic: { shortcut: "Ctrl+i", execCommand: "italic", toolbarHtml: "I" },
 			underline: { shortcut: "Ctrl+u", execCommand: "underline", toolbarHtml: "U" },
-			removeFormat: { shortcut: "Ctrl+m", execCommand: "removeFormat", toolbarHtml: "&minus;" },
+			removeFormat: { shortcut: "Ctrl+m", execCommand: ["removeFormat", "unlink"], toolbarHtml: "&minus;" },
 			createLink: { 
 				shortcut: "Ctrl+l", 
 				execCommand: "createLink",
@@ -294,7 +303,8 @@ FreshCode Software Development
 			h6: { shortcut: "Ctrl+Alt+6", execCommand: "formatBlock", execCommandValue: ["<H6>"], toolbarHtml: "H<sub>6</sub>" },
 			indent: { shortcut: ["Tab", "Ctrl+Tab"], execCommand: "indent", toolbarHtml: "&rArr;" },
 			outdent: { shortcut: "Shift+Tab", execCommand: "outdent", toolbarHtml: "&lArr;" }
-		}
+		},
+		brOnReturn: false
 	};
 
 })(jQuery);
