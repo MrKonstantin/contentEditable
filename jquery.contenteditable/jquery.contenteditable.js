@@ -277,7 +277,9 @@ FreshCode Software Development
 			bold: { shortcut: "Ctrl+b", execCommand: "bold", toolbarHtml: "B" },
 			italic: { shortcut: "Ctrl+i", execCommand: "italic", toolbarHtml: "I" },
 			underline: { shortcut: "Ctrl+u", execCommand: "underline", toolbarHtml: "U" },
-			removeFormat: { shortcut: "Ctrl+m", execCommand: ["removeFormat", "unlink"], toolbarHtml: "&minus;" },
+			removeFormat: { shortcut: "Ctrl+m", execCommand: ["removeFormat", "unlink", "formatBlock"],
+				execCommandValue: [null, null, ["<P>"]],
+				toolbarHtml: "&minus;" },
 			createLink: { 
 				shortcut: "Ctrl+l", 
 				execCommand: "createLink",
