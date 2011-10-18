@@ -126,6 +126,7 @@ FreshCode Software Development
 				// use self-invoking function to keep command and opts in scope after loop ends
 				methods[command] = (function(command, opts) { 
 					return function() {
+						var $toolbar = $(this).data('fresheditor').toolbar;
 						// prevent triggering items that are not enabled
 						if ($toolbar.find('a.toolbar_' + command).size() == 0) { 
 							return false; 
@@ -198,7 +199,8 @@ FreshCode Software Development
 					$(this).data('fresheditor', {
 						target: $this,
 						tooltip: tooltip,
-						options: options
+						options: options,
+						toolbar: $toolbar
 					});
 				}
 			});
