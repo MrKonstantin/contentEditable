@@ -145,14 +145,17 @@ FreshCode Software Development
 							// if the command wants to provide a value to the execCommand, allow
 							// it to using a callback
 							if (typeof execCommandValue === "function") {
-								execCommandValue(function(value) {
-									// allow command to be aborted by returning false
-									if (value === false) {
-										return false; 
-									}
-								
-									document.execCommand(execCommand, false, value);
-								});
+								// making sure we don't execute the command if "that" is not editable
+								if (that.prop("contentEditable") == "true") {
+									execCommandValue(function(value) {
+										// allow command to be aborted by returning false
+										if (value === false) {
+											return false; 
+										}
+
+										document.execCommand(execCommand, false, value);
+									});
+								}
 							}
 							else
 							{
