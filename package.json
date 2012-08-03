@@ -1,0 +1,20 @@
+{
+  "name": "contentEditable",
+  "description": "a simple wsiwyg javascript frontend to contenteditable",
+  "version": "0.0.1",
+  "homepage": "https://github.com/aliem/contentEditable",
+  "authors": ["Lorenzo Giuliani <@frenzart>"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aliem/contentEditable.git"
+  },
+  "keywords": ["ender", "editor", "wysiwyg"],
+  "main": "./bean.js",
+  "ender": "./src/ender.js"
+, "devDependencies" : {
+    "ender": "*"
+  , "smoosh": "*"
+  , "sqwish": "*"
+  , "uglify-js": "*"
+  }
+}

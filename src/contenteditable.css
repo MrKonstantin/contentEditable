@@ -1,6 +1,6 @@
 ﻿body
 {
-	font-size:1em;
+	font: 16px/24px "Palatino Linotype", Times, "Times New Roman", serif;
 }
 
 sup,
@@ -8,7 +8,7 @@ sub {
 	height: 0;
 	line-height: 1;
 	vertical-align: baseline;
-	_vertical-align: bottom;
+	_vertical-align: bottom; /*?????????????????*/
 	position: relative;
 	font-size:smaller;
 	
@@ -27,13 +27,22 @@ em
 	font-style: italic;
 }
 
-.fresheditable[contentEditable=true]
+.content {
+	width: 720px;
+	margin: 0 auto;
+}
+
+.editable[contentEditable=true]
 {
-	border-left:10px solid #ccc;
+	border-left:  10px solid  #CCC;
+	border-right:  1px dashed #CCC;
+	border-top:    1px dashed #CCC;
+	border-bottom: 1px dashed #CCC;
+	
 	padding-left:10px;
 }
 
-.fresheditable[contentEditable=true] img
+.editable[contentEditable=true] img
 {
 	border:2px dashed #ccc;
 	min-width:32px;
@@ -41,7 +50,12 @@ em
 	padding:1em;
 }
 
-.fresheditable .edit-button > span
+.editable[contentEditable=true]:focus {
+	border-color: #787878;
+	outline:0;
+}
+
+.editable .edit-button > span
 {
 	background-image:url("images/edit_icon.png");
 	background-repeat:no-repeat;
@@ -59,6 +73,10 @@ em
 	font-family:"Georgia", Serif;
 	line-height:1.67em;
 	font-size:1em;
+}
+
+.fresheditor-toolbar .buttons {
+	display: inline-block;
 }
 
 .fresheditor-toolbar .buttons ul.toolbarSection

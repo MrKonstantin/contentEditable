@@ -4,8 +4,7 @@ to use a different color start by replacing all instances of
 #5c87b2 with your new color.
 ----------------------------------------------------------*/
 
-body 
-{
+body {
 	font: 16px/27px "Georgia", "Times New Roman", serif;
 	background-color: #fff;
 	margin:0;
