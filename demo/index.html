@@ -3,7 +3,8 @@
 <head>
 	<title>contentEditable</title>
 	<link rel="stylesheet" href="/src/contenteditable.css">
-	<link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
+	<link rel="stylesheet" href="./bootstrap.css">
+	<link rel="stylesheet" href="./fontawesome/css/font-awesome.css">
 </head>
 <body>
 
@@ -80,7 +81,7 @@
 			window.editor = new Editor({
 				toolbar: $(".buttons")
 			}
-			, $(".editable")
+			, $("#content")
 			);
 			$('#editButton').bind('click', editor.editable)
 		});
