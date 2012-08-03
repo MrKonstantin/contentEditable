@@ -10,11 +10,11 @@ var Editor = function($) {
   var default_toolbar = {
       groups: [
         'bold italic underline'
-      , 'p h1 h2 h3 h4 h5 h6'
+      , 'p blockquote h1 h2 h3'
       , 'createLink insertImage'
-      , 'blockquote code'
       , 'ol ul'
       , 'indent outdent'
+      , 'code'
       ]
     , buttons: {
         bold: {
@@ -52,7 +52,7 @@ var Editor = function($) {
           tooltip: 'Link'
         },
         insertImage: {
-          shortcut: "⌘+g, Ctrl+g",
+          shortcut: "⌘+g, ctrl+g",
           execCommand: "insertImage",
           execCommandValue: function (callback) {
             callback(prompt("Enter image URL:", "http://"));
@@ -68,52 +68,52 @@ var Editor = function($) {
           tooltip: 'Quote'
         },
         code: {
-          shortcut: "⌘+⌥+k, Ctrl+Alt+k",
+          shortcut: "⌘+⌥+k, ctrl+alt+k",
           execCommand: "formatBlock",
           execCommandValue: ["<PRE>"],
           icon: "icon-edit",
           tooltip: 'Code'
         },
         ol: {
-          shortcut: "⌘+⌥+o, Ctrl+Alt+o",
+          shortcut: "⌘+⌥+o, ctrl+alt+o",
           execCommand: "insertOrderedList",
           icon:"icon-list-ol",
           tooltip: 'Ordered List'
         },
         ul: {
-          shortcut: "⌘+⌥+u, Ctrl+Alt+u",
+          shortcut: "⌘+⌥+u, ctrl+alt+u",
           execCommand: "insertUnorderedList",
           icon:"icon-list-ul",
           tooltip: 'Unordered List'
         },
         sup: {
-          shortcut: "⌘+., Ctrl+.",
+          shortcut: "⌘+., ctrl+.",
           execCommand: "superscript",
           html:  "x<sup>2</sup>",
           tooltip: 'Superscript'
         },
         sub: {
-          shortcut: "⌘+shift+., Ctrl+Shift+.",
+          shortcut: "⌘+shift+., ctrl+shift+.",
           execCommand: "subscript",
           html:  "x<sub>2</sub>",
           tooltip: 'Subscript'
         },
         p: {
-          shortcut: "⌘+⌥+0, Ctrl+Alt+0",
+          shortcut: "⌘+⌥+0, ctrl+alt+0",
           execCommand: "formatBlock",
           execCommandValue: ["<P>"],
           html: "P",
           tooltip: 'Paragraph'
         },
         h1: {
-          shortcut: "⌘+⌥+1, Ctrl+Alt+1",
+          shortcut: "⌘+⌥+1, ctrl+alt+1",
           execCommand: "formatBlock",
           execCommandValue: ["<H1>"],
           html: "H<sub>1</sub>",
           tooltip: 'Heading 1'
         },
         h2: {
-          shortcut: "⌘+⌥+u, Ctrl+Alt+2",
+          shortcut: "⌘+⌥+u, ctrl+alt+2",
           execCommand: "formatBlock",
           execCommandValue: ["<H2>"],
           html: "H<sub>2</sub>",
@@ -238,6 +238,7 @@ var Editor = function($) {
     if (btn.shortcut)
       $.key(btn.shortcut.toString(), function () {
         b.click();
+        return false;
       });
 
     b.appendTo(group);
@@ -309,6 +310,15 @@ var Editor = function($) {
   };
   Editor.prototype.clean = function(){};
   Editor.prototype.blur  = function(){};
+  Editor.prototype.attachTo = function(textarea){
+    var self = this;
+    this.log('attachTo')
+    this.$area = $(textarea);
+    this.$el.bind('keyup',function(ev){
+      self.log('attachTo: saving changes to textarea.')
+      self.$area.val(self.$el.html());
+    });
+  };
 
   return Editor;
 }(ender);
